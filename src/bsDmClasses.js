@@ -1,7 +1,7 @@
 /**
  * Created by tedshaffer on 10/5/16.
  */
-import { guid } from '../utilities/utils';
+import { guid } from './utilities/utils';
 
 export class ContentItem {
     constructor(name, type, id) {
@@ -37,6 +37,27 @@ export class MediaContentItem extends ContentItem {
     constructor(state) {
         super(state.name, "media", state.id);
         this.media = new MediaObject(state.media);
+    }
+}
+
+export class Zone {
+
+    // id: BaDmId;
+    // name: string;
+    // type: ZoneType;
+    // nonInteractive: boolean;
+    // initialMediaStateId: BaDmId;
+
+    get containerObject() {
+        return {id: this.id, type: "Zone"};
+    }
+
+    constructor(state) {
+        this.id = state.id;
+        this.name = state.name;
+        this.type = state.type;
+        this.nonInteractive = state.nonInteractive;
+        this.initialMediaStateId = state.initialMediaStateId;
     }
 }
 

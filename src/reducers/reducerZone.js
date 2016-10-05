@@ -4,6 +4,7 @@
 import { combineReducers } from 'redux';
 
 import { ADD_ZONE } from '../bsDmActions';
+import { Zone } from '../bsDmClasses';
 
 let _ = require('lodash/omit');
 
@@ -44,3 +45,18 @@ const allZones = (state = [], {type, id} ) => {
 const zoneReducer = combineReducers( {zonesById, allZones} );
 
 export default zoneReducer;
+
+// Selectors
+
+export const getZoneById = (state, props) => {
+    let zoneState = state.zones.zonesById[props.id];
+
+    if (zoneState) {
+        const zone = new Zone(zoneState);
+        return zone;
+    }
+    else {
+        return undefined;
+    }
+}
+
