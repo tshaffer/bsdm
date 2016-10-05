@@ -3,7 +3,7 @@
  */
 import {combineReducers} from 'redux';
 
-const bsdmReducer = combineReducers({
-});
-
-export bsdmReducer;
+// const bsdmReducer = combineReducers({
+// });
+//
+// export bsdmReducer;
