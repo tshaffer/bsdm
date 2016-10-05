@@ -5,6 +5,8 @@ import { guid } from './utilities/utils';
 
 // Actions
 export const NEW_SIGN = 'NEW_SIGN';
+export const ADD_ZONE = 'ADD_ZONE';
+
 
 export const baNewSign = (name, mode) => ({
     type: NEW_SIGN,
@@ -12,6 +14,17 @@ export const baNewSign = (name, mode) => ({
     payload: {
         name: name,
         videoMode: mode
+    }
+});
+
+
+export const baAddZone = (name, type, nonInteractive) => ({
+    type: ADD_ZONE,
+    id: guid(),
+    payload: {
+        name: name,
+        type: type,
+        nonInteractive: nonInteractive
     }
 });
 

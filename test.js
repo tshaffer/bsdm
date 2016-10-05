@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 
 import bsdmReducer from './src/reducers/index';
 
-import { baNewSign } from './src/bsDmActions';
+import { baNewSign, baAddZone } from './src/bsDmActions';
 
 let store = createStore(bsdmReducer, applyMiddleware(thunk));
 
@@ -21,6 +21,12 @@ console.log(contentItem1);
 store.dispatch(baNewSign('TestSign', "v1920x1080x60p"));
 
 let state = store.getState();
+console.log("state:");
+console.log(state);
+
+let zoneAction = store.dispatch(baAddZone('Zone1', "images"));
+
+state = store.getState();
 console.log("state:");
 console.log(state);
 
