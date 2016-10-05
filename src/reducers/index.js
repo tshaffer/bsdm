@@ -6,4 +6,4 @@ import {combineReducers} from 'redux';
 const bsdmReducer = combineReducers({
 });
 
-export default bsdmReducer;
+export bsdmReducer;
