@@ -18,7 +18,7 @@ export const baNewSign = (name, mode) => ({
 });
 
 
-export const baAddZone = (name, type, nonInteractive) => ({
+export const baAddZone = (name, type, nonInteractive = true) => ({
     type: ADD_ZONE,
     id: guid(),
     payload: {
