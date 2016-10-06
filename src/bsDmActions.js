@@ -10,6 +10,8 @@ export const NEW_SIGN = 'NEW_SIGN';
 export const ADD_ZONE = 'ADD_ZONE';
 export const ADD_MEDIA_STATE = 'ADD_MEDIA_STATE';
 export const UPDATE_ZONE = 'UPDATE_ZONE';
+export const ADD_EVENT = 'ADD_EVENT';
+export const ADD_TRANSITION = 'ADD_TRANSITION';
 
 
 export const baNewSign = (name, mode) => ({
@@ -65,3 +67,29 @@ export const baAddMediaState = (
         volume: volume
     }
 });
+
+export const baAddEvent = (name, type, mediaState, data) => ({
+    type: ADD_EVENT,
+    id: guid(),
+    payload: {
+        name: name,
+        type: type,
+        mediaStateId: mediaState,
+        data: data
+    }
+});
+
+export const baAddTransition = (
+    name, eventId, targetMediaStateId,
+    type = "No_effect", conditionId) => ({
+    type: ADD_TRANSITION,
+    id: guid(),
+    payload: {
+        name: name,
+        eventId: eventId,
+        targetMediaStateId: targetMediaStateId,
+        type: type,
+        conditionId: conditionId
+    }
+});
+

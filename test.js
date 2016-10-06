@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 
 import bsdmReducer from './src/reducers/index';
 
-import { baNewSign, baAddZone, baUpdateZone, baAddMediaState } from './src/bsDmActions';
+import { baNewSign, baAddZone, baUpdateZone, baAddMediaState, baAddEvent, baAddTransition } from './src/bsDmActions';
 import { getZoneById } from './src/reducers/reducerZone';
 import { getMediaStateById, getMediaStatesForZone } from './src/reducers/reducerMediaState';
 
@@ -73,5 +73,31 @@ msAction = store.dispatch(baAddMediaState('State2', zone1Container, contentItem2
 
 state = store.getState();
 console.log("state after adding media state2:");
+console.log(state);
+
+let mediaState2Id = msAction.id;
+let mediaState2 = getMediaStateById(state, {id: mediaState2Id});
+console.log("mediaState2");
+console.log(mediaState2);
+
+zone1States = getMediaStatesForZone(state, {id: zone1Id});
+console.log("zone1States after adding mediaState2:");
+console.log(zone1States);
+
+// Make State 2 the initial state
+store.dispatch(baUpdateZone(zone1Id,{initialMediaStateId:mediaState2.id}));
+zone1 = getZoneById(store.getState(), {id: zone1Id});
+console.log("zone1:");
+console.log(zone1);
+
+// Event added to State 2 (now the initial event)
+let evAction = store.dispatch(baAddEvent('Timeout1',"Timer",mediaState2.id,{interval: 5}));
+let eventId = evAction.id;
+
+// Transition to State 1
+store.dispatch(baAddTransition('Transition1',eventId,mediaState1.id));
+
+state = store.getState();
+console.log("state after adding transition:");
 console.log(state);
 
