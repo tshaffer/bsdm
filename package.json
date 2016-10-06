@@ -1,6 +1,6 @@
 {
   "name": "bsdm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "BrightSign Data Model",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,7 +9,8 @@
   "license": "MIT",
   "dependencies": {
     "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "reselect": "^2.5.4"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",

@@ -1,6 +1,8 @@
 /**
  * Created by tedshaffer on 10/5/16.
  */
+import { createSelector } from 'reselect';
+
 import { ADD_MEDIA_STATE } from '../bsDmActions';
 import { MediaState } from '../bsDmClasses';
 
@@ -40,4 +42,13 @@ export const getMediaStateById = (state, props) => {
         return undefined;
     }
 }
+
+const getStatesById = (state) => state.mediaStates;
+const getZoneIdProp = (state, props) => (props.id);
+
+export const getMediaStatesForZone = createSelector(getStatesById, getZoneIdProp,
+    (states, zone) => {
+            return Object.keys(states).filter((id, index, idArray) => states[id].container.id === zone);
+    }
+);
 

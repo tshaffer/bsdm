@@ -8,7 +8,7 @@ import bsdmReducer from './src/reducers/index';
 
 import { baNewSign, baAddZone, baAddMediaState } from './src/bsDmActions';
 import { getZoneById } from './src/reducers/reducerZone';
-import { getMediaStateById } from './src/reducers/reducerMediaState';
+import { getMediaStateById, getMediaStatesForZone } from './src/reducers/reducerMediaState';
 
 let store = createStore(bsdmReducer, applyMiddleware(thunk));
 
@@ -49,3 +49,10 @@ let mediaState1Id = msAction.id;
 let mediaState1 = getMediaStateById(state, {id: mediaState1Id});
 console.log("mediaState1:");
 console.log(mediaState1);
+
+state = store.getState();
+zone1 = getZoneById(state, {id: zone1Id});
+
+let zone1States = getMediaStatesForZone(state, {id: zone1Id});
+console.log("zone1States:");
+console.log(zone1States);
