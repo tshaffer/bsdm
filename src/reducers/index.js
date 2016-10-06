@@ -4,10 +4,12 @@
 import {combineReducers} from 'redux';
 import signReducer from './reducerSign';
 import zoneReducer from './reducerZone';
+import mediaStateReducer from './reducerMediaState';
 
 const bsdmReducer = combineReducers({
     sign: signReducer,
-    zones: zoneReducer
+    zones: zoneReducer,
+    mediaStates: mediaStateReducer
 });
 
 export default bsdmReducer;

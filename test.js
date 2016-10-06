@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 
 import bsdmReducer from './src/reducers/index';
 
-import { baNewSign, baAddZone } from './src/bsDmActions';
+import { baNewSign, baAddZone, baAddMediaState } from './src/bsDmActions';
 import { getZoneById } from './src/reducers/reducerZone';
 
 let store = createStore(bsdmReducer, applyMiddleware(thunk));
@@ -34,4 +34,12 @@ console.log(state);
 
 let zone1 = getZoneById(store.getState(), {id: zone1Id});
 console.log(zone1);
+
+let zone1Container = zone1.containerObject;
+
+let msAction = store.dispatch(baAddMediaState('State1', zone1Container, contentItem1));
+
+state = store.getState();
+console.log("state after adding media state:");
+console.log(state);
 

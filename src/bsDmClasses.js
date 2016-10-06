@@ -42,12 +42,6 @@ export class MediaContentItem extends ContentItem {
 
 export class Zone {
 
-    // id: BaDmId;
-    // name: string;
-    // type: ZoneType;
-    // nonInteractive: boolean;
-    // initialMediaStateId: BaDmId;
-
     get containerObject() {
         return {id: this.id, type: "Zone"};
     }
