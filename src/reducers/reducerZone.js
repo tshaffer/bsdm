@@ -3,7 +3,7 @@
  */
 import { combineReducers } from 'redux';
 
-import { ADD_ZONE } from '../bsDmActions';
+import { ADD_ZONE, UPDATE_ZONE } from '../bsDmActions';
 import { Zone } from '../bsDmClasses';
 
 let _ = require('lodash/omit');
@@ -24,12 +24,13 @@ const zonesById = (state = {}, action ) => {
     const id = action.id;
     const payload = action.payload;
 
-    console.log("zonesById invoked, type=", type);
     switch (type) {
         case ADD_ZONE :
-            console.log("add_zone");
             let {name: zoneName, type: zoneType, nonInteractive} = payload;
             return Object.assign({}, state, {[id]: createZoneState(id, zoneName, zoneType, nonInteractive)});
+        case UPDATE_ZONE :
+            let updatedZone = Object.assign({}, state[id], payload);
+            return Object.assign({}, state, {[id]: updatedZone});
     }
     return state;
 };
