@@ -55,3 +55,20 @@ export class Zone {
     }
 }
 
+export class MediaState {
+
+    // id: BaDmId;
+    // name: string;
+    // container: DmMediaStateContainer;
+    // contentItem: DmContentItemState;
+
+    constructor(state) {
+        this.id = state.id;
+        this.name = state.name;
+        this.container = Object.assign({}, state.container);
+        // this.contentItem = contentItemFactory(state.contentItemState);
+        this.contentItem = new ContentItem(state.contentItemState.name, state.contentItemState.type, state.contentItemState.id);
+    }
+}
+
+

@@ -2,6 +2,7 @@
  * Created by tedshaffer on 10/5/16.
  */
 import { ADD_MEDIA_STATE } from '../bsDmActions';
+import { MediaState } from '../bsDmClasses';
 
 let _ = require('lodash/omit');
 
@@ -26,3 +27,17 @@ const mediaStatesById = (state = {}, {type, id, payload}) => {
 const mediaStateReducer = mediaStatesById;
 
 export default mediaStateReducer;
+
+// Selectors
+
+export const getMediaStateById = (state, props) => {
+    let mediaStateState = state.mediaStates[props.id];
+    if (mediaStateState) {
+        const mediaState = new MediaState(mediaStateState);
+        return mediaState;
+    }
+    else {
+        return undefined;
+    }
+}
+
