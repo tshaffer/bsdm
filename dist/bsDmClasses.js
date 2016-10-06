@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.Zone = exports.MediaContentItem = exports.MediaObject = exports.ContentItem = undefined;
+exports.MediaState = exports.Zone = exports.MediaContentItem = exports.MediaObject = exports.ContentItem = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -72,14 +72,6 @@ var MediaContentItem = exports.MediaContentItem = function (_ContentItem) {
 var Zone = exports.Zone = function () {
     _createClass(Zone, [{
         key: "containerObject",
-
-
-        // id: BaDmId;
-        // name: string;
-        // type: ZoneType;
-        // nonInteractive: boolean;
-        // initialMediaStateId: BaDmId;
-
         get: function get() {
             return { id: this.id, type: "Zone" };
         }
@@ -97,3 +89,20 @@ var Zone = exports.Zone = function () {
 
     return Zone;
 }();
+
+var MediaState =
+
+// id: BaDmId;
+// name: string;
+// container: DmMediaStateContainer;
+// contentItem: DmContentItemState;
+
+exports.MediaState = function MediaState(state) {
+    _classCallCheck(this, MediaState);
+
+    this.id = state.id;
+    this.name = state.name;
+    this.container = Object.assign({}, state.container);
+    // this.contentItem = contentItemFactory(state.contentItemState);
+    this.contentItem = new ContentItem(state.contentItemState.name, state.contentItemState.type, state.contentItemState.id);
+};

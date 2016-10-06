@@ -1,0 +1,11 @@
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/bsDmActions.js ./src/bsDmActions.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/bsDmClasses.js ./src/bsDmClasses.js
+
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/utilities/utils.js ./src/utilities/utils.js
+
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/index.js ./src/reducers/index.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/reducerSign.js ./src/reducers/reducerSign.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/reducerZone.js ./src/reducers/reducerZone.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/reducerEvent.js ./src/reducers/reducerEvent.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/reducerMediaState.js ./src/reducers/reducerMediaState.js
+./node_modules/babel-cli/bin/babel.js --presets es2015 --out-file dist/reducers/reducerTransition.js ./src/reducers/reducerTransition.js

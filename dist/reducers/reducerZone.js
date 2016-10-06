@@ -39,15 +39,16 @@ var zonesById = function zonesById() {
     var id = action.id;
     var payload = action.payload;
 
-    console.log("zonesById invoked, type=", type);
     switch (type) {
         case _bsDmActions.ADD_ZONE:
-            console.log("add_zone");
             var zoneName = payload.name;
             var zoneType = payload.type;
             var nonInteractive = payload.nonInteractive;
 
             return Object.assign({}, state, _defineProperty({}, id, createZoneState(id, zoneName, zoneType, nonInteractive)));
+        case _bsDmActions.UPDATE_ZONE:
+            var updatedZone = Object.assign({}, state[id], payload);
+            return Object.assign({}, state, _defineProperty({}, id, updatedZone));
     }
     return state;
 };
