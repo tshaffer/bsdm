@@ -3,7 +3,7 @@
  */
 import { combineReducers } from 'redux';
 
-import { ADD_ZONE, UPDATE_ZONE } from '../bsDmActions';
+import { ADD_ZONE, UPDATE_ZONE, ADD_MEDIA_STATE } from '../bsDmActions';
 import { Zone } from '../bsDmClasses';
 
 let _ = require('lodash/omit');
@@ -15,7 +15,7 @@ const createZoneState =
             name: name,
             type: type,
             nonInteractive: nonInteractive,
-            initialMediaStateId: id
+            initialMediaStateId: ""
         });
 
 const zonesById = (state = {}, action ) => {
@@ -31,6 +31,16 @@ const zonesById = (state = {}, action ) => {
         case UPDATE_ZONE :
             let updatedZone = Object.assign({}, state[id], payload);
             return Object.assign({}, state, {[id]: updatedZone});
+        case ADD_MEDIA_STATE :
+            // First media state added to a zone always becomes the initial state
+            // For this action, action.id == mediaStateId, mediaState.container.id == ZoneId
+            let {container} = payload;
+            let zone = state[container.id];
+            if (zone && zone.initialMediaStateId === "") {
+                let updatedZone = Object.assign({}, state[container.id], {initialMediaStateId: id});
+                return Object.assign({}, state, {[container.id]: updatedZone});
+            }
+            break;
     }
     return state;
 };

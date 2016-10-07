@@ -26,7 +26,7 @@ var createZoneState = function createZoneState(id, name, type, nonInteractive) {
         name: name,
         type: type,
         nonInteractive: nonInteractive,
-        initialMediaStateId: id
+        initialMediaStateId: ""
     };
 };
 
@@ -49,6 +49,17 @@ var zonesById = function zonesById() {
         case _bsDmActions.UPDATE_ZONE:
             var updatedZone = Object.assign({}, state[id], payload);
             return Object.assign({}, state, _defineProperty({}, id, updatedZone));
+        case _bsDmActions.ADD_MEDIA_STATE:
+            // First media state added to a zone always becomes the initial state
+            // For this action, action.id == mediaStateId, mediaState.container.id == ZoneId
+            var container = payload.container;
+
+            var zone = state[container.id];
+            if (zone && zone.initialMediaStateId === "") {
+                var _updatedZone = Object.assign({}, state[container.id], { initialMediaStateId: id });
+                return Object.assign({}, state, _defineProperty({}, container.id, _updatedZone));
+            }
+            break;
     }
     return state;
 };
